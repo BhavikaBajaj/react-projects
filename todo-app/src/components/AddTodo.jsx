@@ -1,11 +1,14 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { BiMessageAdd } from "react-icons/bi";
+import { TodoItemsContext } from "../store/todo-items-store";
 
-function AddTodo({ onNewItem }) {
+function AddTodo() {
   // const [todoName, setTodoName] = useState("");
   // const [dueDate, setDueDate] = useState("");
   const todoNameElement = useRef();
   const dueDateElement = useRef();
+  const contextObj = useContext(TodoItemsContext);
+  const addNewItem = contextObj.addNewItem;
 
   // const handleNameChange = (event) => {
   //   setTodoName(event.target.value);
@@ -23,7 +26,7 @@ function AddTodo({ onNewItem }) {
     // console.log(`${todoName} due on: ${dueDate}`);
     todoNameElement.current.value = "";
     dueDateElement.current.value = "";
-    onNewItem(todoName, dueDate);
+    addNewItem(todoName, dueDate);
     // setTodoName("");
     // setDueDate("");
   };
